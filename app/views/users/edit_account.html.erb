@@ -1,0 +1,19 @@
+<h1>アカウントを編集</h1>
+
+<%= form_for @user, url: update_account_user_path(@user), method: :put do |f| %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.label :current_password %>
+  <%= f.password_field :current_password %>
+
+  <%= f.submit "アカウントを更新" %>
+<% end %>
+
+<%= link_to "アカウント情報に戻る", user_path(current_user) %>
