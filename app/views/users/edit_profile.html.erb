@@ -1,21 +1,32 @@
-<h1>プロフィールを編集</h1>
 
-<%= form_for @user, url: update_profile_user_path(@user), method: :put, html: { multipart: true } do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= form_for @user, url: update_profile_user_path(@user), method: :put, html: { multipart: true, class: 'form-group' } do |f| %>
+  <div class="row justify-content-center">
+  <div class="col-md-4">
+  <h1>プロフィール編集
+  
+  <div class="form-group">
+    <%= f.label :名前 %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
 
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  <% if @user.image.present? && @user.image.attached? %>
-    <%= image_tag @user.image.variant(resize: "100x100") %>
-  <% else %>
-    <%= image_tag 'icon.png', alt: 'Default Icon', width: '100', height: '100' %>
-  <% end %>
+   <div class="form-group">
+    <%= f.label :アイコン %>
+    <%= f.file_field :image, class: 'form-control' %>
+     <% if @user.image.present? && @user.image.attached? %>
+      <%= image_tag @user.image.variant(resize: "100x100"), class: 'img-thumbnail mt-3' %>
+    <% else %>
+      <%= image_tag 'icon.png', alt: 'Default Icon', class: 'img-thumbnail mt-3', width: '100', height: '100' %>
+    <% end %>
+  </div>
 
-  <%= f.label :profile %>
-  <%= f.text_area :profile %>
+  <div class="form-group">
+    <%= f.label :自己紹介 %>
+    <%= f.text_area :profile, class: 'form-control' %>
+  </div>
 
-  <%= f.submit "プロフィールを更新" %>
+  <%= f.submit "プロフィールを更新", class: 'btn btn-primary' %>
+</div>
+</div>
 <% end %>
 
-<%= link_to "ユーザープロフィールに戻る", user_path(@user) %>
+<%= link_to "アカウント情報に戻る", user_path(@user), class: 'btn btn-link mt-3' %>

@@ -1,19 +1,30 @@
-<h1>アカウントを編集</h1>
-
 <%= form_for @user, url: update_account_user_path(@user), method: :put do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+  
+  <div class="row justify-content-center">
+    <div class="col-md-4"> 
+      <h1>アカウントを編集</h1>
+      <div class="form-group">
+        <%= f.label :メールアドレス %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+      <div class="form-group">
+        <%= f.label :パスワード %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+      <div class="form-group">
+        <%= f.label :パスワード（確認用） %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
 
-  <%= f.label :current_password %>
-  <%= f.password_field :current_password %>
+      <div class="form-group">
+        <%= f.label :パスワード入力 %>
+        <%= f.password_field :current_password, class: 'form-control' %>
+      </div>
 
-  <%= f.submit "アカウントを更新" %>
-<% end %>
-
-<%= link_to "アカウント情報に戻る", user_path(current_user) %>
+    <%= f.submit "アカウントを更新", class: 'btn btn-primary' %>
+    <% end %>
+    </div>
+  </div>
+<%= link_to "アカウント情報に戻る", user_path(current_user), class: 'btn btn-link' %>

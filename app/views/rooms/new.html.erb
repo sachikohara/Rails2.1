@@ -1,2 +1,51 @@
-<h1>Rooms#new</h1>
-<p>Find me in app/views/rooms/new.html.erb</p>
+<% if @room.new_record? %>
+  <h1>新しい施設を登録</h1>
+<% end %>
+
+<%= form_with model: @room, local: true, multipart: true do |form| %>
+  <% if @room.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@room.errors.count, "error") %> が検出されました:</h2>
+      <ul>
+        <% @room.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row justify-content-center">
+    <div class="col-md-4"> 
+      <div class="form-group">
+        <%= form.label :room_name, "施設名" %>
+        <%= form.text_field :room_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :room_image, "施設画像" %>
+        <%= form.file_field :room_image, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :introduction, "紹介文" %>
+        <%= form.text_area :introduction, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :price, "値段" %>
+        <%= form.number_field :price, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :address, "所在地" %>
+        <%= form.text_field :address, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "保存する", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to "一覧に戻る", rooms_path, class: 'btn btn-link' %>

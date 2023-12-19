@@ -1,2 +1,42 @@
-<h1>Rooms#edit</h1>
-<p>Find me in app/views/rooms/edit.html.erb</p>
+<% if @room.new_record? %>
+  <h1>新しい施設を登録</h1>
+<% else %>
+  <h1>施設情報を編集</h1>
+<% end %>
+
+<%= form_with model: @room, local: true do |form| %>
+  <% if @room.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@room.errors.count, "error") %> が検出されました:</h2>
+      <ul>
+        <% @room.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :施設の名前 %>
+    <%= form.text_field :room_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :紹介文 %>
+    <%= form.text_area :introduction %>
+  </div>
+
+  <div class="field">
+    <%= form.label :宿泊料金 %>
+    <%= form.number_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :所在地 %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

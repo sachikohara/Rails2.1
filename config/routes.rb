@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    resources :reservations, only: [:new, :create]
   end
-end
 
+  resources :reservations, only: [:index]
+end

@@ -1,3 +1,48 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+/* CSS (SCSS) */
+.FirstView {
+    background: image-url('worman.jpg') no-repeat center center/cover; // 背景画像を設定
+    height: 850px;
+    position: relative;
+    z-index: 1;
+}
+
+// タイトルのスタイル
+.FirstView_title {
+    font-family: Arial, sans-serif; /* 標準的なフォントを選択 */
+    color: black; /* テキストの色を黒に設定 */
+    font-size: 3rem; /* フォントサイズを大きく設定 */
+    font-weight: bold; /* フォントを太字に */
+}
+
+// 検索ボックスのスタイル
+.search-box {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+// フォーム要素のスタイリング
+.form-control {
+    margin-bottom: 10px; // モバイルビューでのマージン
+}
+
+.btn {
+    width: 100%; // モバイルビューでのボタン幅
+}
+
+// レスポンシブデザイン
+@media (min-width: 768px) {
+    .form-inline .form-control {
+        width: auto; // デスクトップビューでは幅を自動に
+        margin-right: 10px; // 右のマージンを追加
+    }
+    .form-inline .btn {
+        width: auto; // デスクトップビューでは幅を自動に
+    }
+}
+body, header, html {
+    margin: 0;
+    padding: 0;
+  }

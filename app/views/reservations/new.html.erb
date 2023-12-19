@@ -1,0 +1,21 @@
+<h1>新しい予約</h1>
+<%= form_with(model: [@room, @reservation]) do |form| %>
+  <div>
+    <%= form.label :check_in, "チェックイン日" %>
+    <%= form.date_field :check_in %>
+  </div>
+
+  <div>
+    <%= form.label :check_out, "チェックアウト日" %>
+    <%= form.date_field :check_out %>
+  </div>
+
+  <div>
+    <%= form.label :guests_count, "人数" %>
+    <%= form.number_field :guests_count %>
+  </div>
+
+  <div>
+    <%= form.submit "予約する" %>
+  </div>
+<% end %>

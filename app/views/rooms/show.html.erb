@@ -1,2 +1,38 @@
-<h1>Rooms#show</h1>
-<p>Find me in app/views/rooms/show.html.erb</p>
+<h1><%= @room.room_name %></h1>
+<% if @room.room_image.present? %>
+  <%= image_tag(@room.room_image) %>
+<% else %>
+  <%= image_tag('image.png') %>
+<% end %>
+<p><strong>紹介文:</strong> <%= @room.introduction %></p>
+<p><strong>宿泊料金 (/日):</strong> <%= @room.price %>円</p>
+<p><strong>住所:</strong> <%= @room.address %></p>
+
+<% if user_signed_in? %>
+  <%= form_for Reservation.new, url: room_reservations_path(@room), method: :post do |f| %>
+  <div class="row justify-content-center">
+    <div class="col-md-3"> 
+    <div class="form-group">
+      <%= f.label :check_in, "チェックイン" %>
+      <%= f.date_field :check_in, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :check_out, "チェックアウト" %>
+      <%= f.date_field :check_out, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :guests_count, "人数" %>
+      <%= f.number_field :guests_count, class: 'form-control' %>
+    </div>
+
+    <%= f.submit "予約する", class: 'btn btn-primary' %>
+  <% end %>
+<% else %>
+  <%= link_to 'ログインして予約する', new_user_session_path, class: 'btn btn-primary' %>
+<% end %>
+ </div>
+</div>
+<%= link_to '一覧に戻る', search_rooms_path %>
+

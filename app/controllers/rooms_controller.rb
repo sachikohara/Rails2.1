@@ -7,21 +7,23 @@ class RoomsController < ApplicationController
   end
 
   def search
-    @rooms = Room.search(params[:keyword] || params[:key] || params[:word])
-    @keyword = params[:keyword] || params[:key] || params[:word]
+    @keyword = params[:keyword]
+    @rooms = Room.search(@keyword)
   end
-  
+
   def new
     @room = Room.new
   end
- 
+
   def create
-    @room = Room.new(room_params.merge(user_id: @user.id))
+    @room = Room.new(room_params)
+    @room.user = @user
+
     if @room.save
-      flash[:notice] = "施設を登録しました"
+      flash[:success] = "施設を登録しました"
       redirect_to rooms_path
     else
-      flash[:notice] = "施設を登録できませんでした"
+      flash[:error] = "施設を登録できませんでした"
       render "new"
     end
   end
@@ -41,7 +43,6 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:room_name, :room_image, :room_image_cache, :introduction, :price, :address)
+    params.require(:room).permit(:room_name, :room_image, :introduction, :price, :address)
   end
 end
-
