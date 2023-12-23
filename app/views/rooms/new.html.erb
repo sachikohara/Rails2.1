@@ -3,9 +3,8 @@
 <% end %>
 
 <%= form_with model: @room, local: true, multipart: true do |form| %>
-  <% if @room.errors.any? %>
+<% if @room.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(@room.errors.count, "error") %> が検出されました:</h2>
       <ul>
         <% @room.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -13,6 +12,7 @@
       </ul>
     </div>
   <% end %>
+  
 
   <div class="row justify-content-center">
     <div class="col-md-4"> 

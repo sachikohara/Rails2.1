@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       redirect_to room_path(@room), notice: '予約が完了しました。'
     else
-      ender :new
+      render :new
     end
   end
 

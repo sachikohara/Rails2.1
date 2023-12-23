@@ -1,5 +1,16 @@
 <h1>新しい予約</h1>
 <%= form_with(model: [@room, @reservation]) do |form| %>
+<% if @reservation.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @reservation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
   <div>
     <%= form.label :check_in, "チェックイン日" %>
     <%= form.date_field :check_in %>
