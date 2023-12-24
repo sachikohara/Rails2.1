@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   
   def update_account
     @user = current_user
-    if @user.update(account_params)
+    if @user.update_with_password(account_params)
       flash[:notice] = "アカウント情報を更新しました"
       redirect_to user_path(@user)
     else

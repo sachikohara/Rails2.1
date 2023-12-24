@@ -8,8 +8,11 @@ class RoomsController < ApplicationController
 
   def search
     @keyword = params[:keyword]
-    @rooms = Room.search(@keyword)
-  end
+    @address = params[:address]
+    @rooms = Room.all
+    @rooms = @rooms.search(@keyword) if @keyword.present?
+    @rooms = @rooms.search_by_address(@address) if @address.present?
+end
 
   def new
     @room = Room.new
