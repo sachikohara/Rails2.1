@@ -1,0 +1,33 @@
+<h1>予約一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>施設画像</th>
+      <th>施設名</th>
+      <th>施設紹介</th>
+      <th>合計金額</th>
+      <th>チェックイン日</th>
+      <th>チェックアウト日</th>
+      <th>予約確定日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+        <td>
+          <% if reservation.room.room_image.present? %>
+            <%= image_tag(reservation.room.room_image, size: '100x100') %>
+          <% else %>
+            <%= image_tag('image.png',size: '100x100') %>
+          <% end %>
+        </td>
+        <td><%= reservation.room.room_name %></td>
+        <td><%= reservation.room.introduction %></td>
+        <td><%= reservation.total_price %>円</td>
+        <td><%= reservation.check_in %></td>
+        <td><%= reservation.check_out %></td>
+        <td><%= reservation.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

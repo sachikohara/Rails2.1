@@ -1,16 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Syukuhaku</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>hotel reservation</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+    .navbar-custom {
+      background-color: yellow;
+    }
+  </style>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+      <div class="container-fluid">
+       <%= link_to image_tag('logo.png', class: 'navbar-brand'), root_path %>
+
+
+
+        <% if user_signed_in? %>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <%= link_to '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, aria: { expanded: "false" } do %>
+                <%= image_tag(current_user.image.present? ? current_user.image : 'icon.png', class: "rounded-circle", style: "width: 50px; height: 50px;") %>
+                <%= current_user.name %>
+              <% end %>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><%= link_to '施設の新規登録', new_room_path, class: "dropdown-item" %></li>
+                <li><%= link_to '予約一覧', reservations_path, class: "dropdown-item" %></li>
+                <li><%= link_to '登録施設一覧', rooms_path, class: "dropdown-item" %></li>
+                <li><%= link_to 'アカウント情報', user_path(current_user), class: "dropdown-item" %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+              </ul>
+            </li>
+          </ul>
+        <% else %>
+          <div class="navbar-nav ml-auto">
+            <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
+            <%= link_to 'サインアップ', new_user_registration_path, class: "nav-link" %>
+          </div>
+        <% end %>
+      </div>
+    </nav>
+  </header>
+<p class="notice mb-0"><%= notice %></p>
+<p class="alert mb-0"><%= alert %></p>
+ <%= yield %>
+</body>
 </html>
