@@ -27,7 +27,7 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
               <%= link_to '#', class: "nav-link dropdown-toggle", id: "navbarDropdown", role: "button", data: { bs_toggle: "dropdown" }, aria: { expanded: "false" } do %>
-                <%= image_tag(current_user.image.present? ? current_user.image : 'icon.png', class: "rounded-circle") %>
+                <%= image_tag(current_user.image.present? ? current_user.image : 'icon.png', class: "rounded-circle", style: "width: 50px; height: 50px;") %>
                 <%= current_user.name %>
               <% end %>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
